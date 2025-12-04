@@ -14,7 +14,7 @@ body {
 
 .carousel--viewport {
   position: relative;
-  height: 200px;         /* item højde - small screen - gør responsiv?*/
+  height: 350px;         /* item højde - small screen - gør responsiv?*/
   overflow: hidden;
   padding: 4% 6%;
 }
@@ -23,10 +23,9 @@ body {
 .carousel--viewport li {
   position: absolute;
   top: 0;
-  width: 90%;            /* ét item på mobil */
+  width: 400px;            /* ét item på mobil */
   height: 100%;
   opacity: 0;
-  left: 5%;
   pointer-events: none;
   display: flex;
   align-items: center;
@@ -36,32 +35,44 @@ body {
   border-radius: 8px;
   box-shadow: 0 6px 18px rgba(0,0,0,.08);
   transition: opacity .2s;
+  z-index: 0;
 }
 
 /* ITEMS ONEonONE */
-.item1 { 
+#item1 { 
   animation: item1Anim 20s infinite linear;
   background: aquamarine; 
 }
-.item2 { 
+
+#item2 { 
   animation: item2Anim 20s infinite linear;
   background: blanchedalmond; 
 }
-.item3 { 
+#item3 { 
   animation: item3Anim 20s infinite linear;
   background: #ffd6a5; 
 }
-.item4 { 
+#item4 { 
   animation: item4Anim 20s infinite linear;
   background: #caffbf; 
 }
-.item5 { 
+#item5 { 
   animation: item5Anim 20s infinite linear;
   background: #9bf6ff; 
 }
-.item6 { 
+#item6 { 
   animation: item6Anim 20s infinite linear;
   background: #bdb2ff; 
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+}
+
+.item--image {
+  width: 300px;
+  height: auto;
 }
 
 /* VARIABLER - overlapper hinanden, så det kun er 1 item som vises */
@@ -73,44 +84,49 @@ body {
 /* KEYFRAMES */
 
 @keyframes item1Anim {
-  0%, 16%   { opacity:1; left: var(--left-pos); pointer-events:auto; }
-  18%, 81%  { opacity:0; pointer-events:none; }
-  82%,100%  { opacity:1; left: var(--right-pos); pointer-events:auto; }
+  0%, 16%   { opacity:1; left: var(--left-pos);  pointer-events:auto; z-index:2; }
+  18%, 81%  { opacity:0; pointer-events:none;    z-index:0; }
+  82%,100%  { opacity:1; left: var(--right-pos); pointer-events:auto; z-index:1; }
 }
+
 @keyframes item2Anim {
-  0%,16%    { opacity:1; left: var(--right-pos); pointer-events:auto; }
-  17%,31%   { opacity:1; left: var(--left-pos); pointer-events:auto; }
-  33%,100%  { opacity:0; pointer-events:none; }
+  0%,16%    { opacity:1; left: var(--right-pos); pointer-events:auto; z-index:1; }
+  17%,31%   { opacity:1; left: var(--left-pos);  pointer-events:auto; z-index:2; }
+  33%,100%  { opacity:0; pointer-events:none;    z-index:0; }
 }
+
 @keyframes item3Anim {
-  0%,16%    { opacity:0; pointer-events:none; }
-  17%,31%   { opacity:1; left: var(--right-pos); pointer-events:auto; }
-  32%,48%   { opacity:1; left: var(--left-pos); pointer-events:auto; }
-  50%,100%  { opacity:0; pointer-events:none; }
+  0%,16%    { opacity:0; pointer-events:none;    z-index:0; }
+  17%,31%   { opacity:1; left: var(--right-pos); pointer-events:auto; z-index:1; }
+  32%,48%   { opacity:1; left: var(--left-pos);  pointer-events:auto; z-index:2; }
+  50%,100%  { opacity:0; pointer-events:none;    z-index:0; }
 }
+
 @keyframes item4Anim {
-  0%,31%    { opacity:0; pointer-events:none; }
-  32%,48%   { opacity:1; left: var(--right-pos); pointer-events:auto; }
-  49%,64%   { opacity:1; left: var(--left-pos); pointer-events:auto; }
-  66%,100%  { opacity:0; pointer-events:none; }
+  0%,31%    { opacity:0; pointer-events:none;    z-index:0; }
+  32%,48%   { opacity:1; left: var(--right-pos); pointer-events:auto; z-index:1; }
+  49%,64%   { opacity:1; left: var(--left-pos);  pointer-events:auto; z-index:2; }
+  66%,100%  { opacity:0; pointer-events:none;    z-index:0; }
 }
+
 @keyframes item5Anim {
-  0%,48%    { opacity:0; pointer-events:none; }
-  49%,64%   { opacity:1; left: var(--right-pos); pointer-events:auto; }
-  65%,81%   { opacity:1; left: var(--left-pos); pointer-events:auto; }
-  82%,100%  { opacity:0; pointer-events:none; }
+  0%,48%    { opacity:0; pointer-events:none;    z-index:0; }
+  49%,64%   { opacity:1; left: var(--right-pos); pointer-events:auto; z-index:1; }
+  65%,81%   { opacity:1; left: var(--left-pos);  pointer-events:auto; z-index:2; }
+  82%,100%  { opacity:0; pointer-events:none;    z-index:0; }
 }
+
 @keyframes item6Anim {
-  0%,64%    { opacity:0; pointer-events:none; }
-  65%,81%   { opacity:1; left: var(--right-pos); pointer-events:auto; }
-  82%,99%   { opacity:1; left: var(--left-pos); pointer-events:auto; }
-  100%      { opacity:1; left: var(--left-pos); pointer-events:auto; }
+  0%,64%    { opacity:0; pointer-events:none;    z-index:0; }
+  65%,81%   { opacity:1; left: var(--right-pos); pointer-events:auto; z-index:1; }
+  82%,99%   { opacity:1; left: var(--left-pos);  pointer-events:auto; z-index:2; }
+  100%      { opacity:1; left: var(--left-pos);  pointer-events:auto; z-index:1; }
 }
 
 /* BIG SCREEN */
-@media (min-width: 601px) {
+@media (min-width: 800px) {
   .carousel--viewport {
-    height: 260px;       /* lidt højere */
+    height: 350px;       /* lidt højere */
     padding: 2% 5%;
   }
 
